@@ -20,6 +20,6 @@ Optional Partition 3 for VM for example or even as /home partition (not needed f
 
 6 - Install git (IMPORTANT: You might need to install archlinux keyring prior to that) = pacman -S git
 
-7 - Clone the repo = git clone 'my-link' -> cd archinstall
+7 - Clone the repo = git clone https://github.com/Rogmaa/Arch-bash-tools >> cd archinstall
 
 8 - Start the script = ./1-archinstall.sh
