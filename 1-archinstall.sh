@@ -33,20 +33,20 @@ btrfs su cr /mnt/@cache
 btrfs su cr /mnt/@home
 btrfs su cr /mnt/@snapshots
 btrfs su cr /mnt/@log
-unmount /mnt
+umount /mnt
 
-mount -0 compress=zstd:1, noatime, subvol=@ /dev/$nvme0n1p2 /mnt
-mkdir -p /mnt/{boot/efi,home,.snapshots,var{cache, log}}
-mount -0 compress=zstd:1, noatime, subvol=@cache /dev/$nvme0n1p2 /mnt/var/cache
-mount -0 compress=zstd:1, noatime, subvol=@home /dev/$nvme0n1p2 /mnt/home
-mount -0 compress=zstd:1, noatime, subvol=@log /dev/$nvme0n1p2 /mnt/var/log
-mount -0 compress=zstd:1, noatime, subvol=@snapshots /dev/$nvme0n1p2 /mnt/.snapshots
+mount -o compress=zstd:1,noatime,subvol=@ /dev/$nvme0n1p2 /mnt
+mkdir -p /mnt/{boot/efi,home,.snapshots,var/{cache,log}}
+mount -o compress=zstd:1,noatime,subvol=@cache /dev/$nvme0n1p2 /mnt/var/cache
+mount -o compress=zstd:1,noatime,subvol=@home /dev/$nvme0n1p2 /mnt/home
+mount -o compress=zstd:1,noatime,subvol=@log /dev/$nvme0n1p2 /mnt/var/log
+mount -o compress=zstd:1,noatime,subvol=@snapshots /dev/$nvme0n1p2 /mnt/.snapshots
 mount /dev/$nvme0n1p1 /mnt/boot/efi
 #mkdir /mnt/'optional_partition' <-- Options for third partition, change name and uncomment if needed.
 #mount /dev/$nvme0n1p3 /mount/'optional_partition' <-- same goes for this line if needed, adapt it.
 # Install base packages, change ucode for your CPU..
 pacstrap -K /mnt base base-devel git linux linux-firmware vim openssh reflector rsync amd-ucode
-# Generate fst
+# Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
 
