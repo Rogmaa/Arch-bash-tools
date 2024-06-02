@@ -11,18 +11,18 @@ echo "                 "
 echo ""
 
 while true; do
-    read-p "START YAY INSTALLATION NOW? (Y/N): " yn
+    read -p "DO YOU WANT TO START THE INSTALLATION NOW? (Yy/Nn): " yn
     case $yn in
         [Yy]* )
-            echo "install started."
+            echo "Installation started."
         break;;
-        [Nn]* )
-            exit;;
+        [Nn]* ) 
+            exit;
         break;;
-        * ) echo "Please answer yes or no";;
+        * ) echo "Please answer yes or no.";;
     esac
 done
-git clone https://aur.archlinux.org/yay/git.git
+git clone https://aur.archlinux.org/yay-git.git
 cd yay-git
 makepkg -si
 
