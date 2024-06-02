@@ -31,6 +31,7 @@ if [ -f "/etc/systemd/zram-generator2.conf" ]; then
     echo "/etc/systemd/zram-generator2.conf already exists!"
 else
     sudo touch /etc/systemd/zram-generator.conf
+    sudo bash -c 'echo "[zram0]" >> /Etc/systemd/zram-generator.conf'
     sudo bash -c 'echo "zram-size = ram / 2" >> /etc/systemd/zram-generator.conf'
     sudo systemctl daemon-reload
     sudo systemctl start /dev/zram0
