@@ -43,8 +43,8 @@ mount -0 compress=zstd:1, noatime, subvol=@log /dev/$nvme0n1p2 /mnt/var/log
 mount -0 compress=zstd:1, noatime, subvol=@snapshots /dev/$nvme0n1p2 /mnt/.snapshots
 mount /dev/$nvme0n1p1 /mnt/boot/efi
 #mkdir /mnt/'optional_partition' <-- Options for third partition, change name and uncomment if needed.
-#mount /dev/$nvme0n1p3 /mount/'optional_partition' <-- same goes for this line if needed, adapt i
-# Install base packages, change ucode for your C
+#mount /dev/$nvme0n1p3 /mount/'optional_partition' <-- same goes for this line if needed, adapt it.
+# Install base packages, change ucode for your CPU..
 pacstrap -K /mnt base base-devel git linux linux-firmware vim openssh reflector rsync intel-ucod
 # Generate fst
 genfstab -U /mnt >> /mnt/etc/fstab
