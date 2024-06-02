@@ -1,5 +1,8 @@
+Those Scripts where mainly made for my Thinkpad gen7 X1, should still work on other systems!
+Feel free to adapt those scripts to your needs.
+
 # WHAT'S INCLUDED?
-  Minimal Arch install, with usefull packages, feel free to change the package list to your needs.
+  Minimal Arch install with usefull packages like: yay, zram, timeshift, preload and kvm.
 
 # IMPORTANT THIS SCRIPT SUPPORTS 2-3 PARTITIONS. BUT ITS EASY TO MODIFY TO YOUR NEEDS.  
 # !!! PLEASE MAKE SURE TO PREPARE THE SYSTEM BEFORE STARTING THE SCRIPTS !!!
@@ -20,6 +23,6 @@ Optional Partition 3 for VM for example or even as /home partition (not needed f
 
 6 - Install git (IMPORTANT: You might need to install archlinux keyring prior to that) = pacman -S git
 
-7 - Clone the repo = git clone https://github.com/Rogmaa/Arch-bash-tools >> cd archinstall
+7 - Clone the repo = git clone https://github.com/Rogmaa/Archinstall >> cd archinstall
 
 8 - Start the script = ./1-archinstall.sh
