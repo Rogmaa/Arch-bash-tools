@@ -6,25 +6,26 @@ echo "  / _ \ | '__/ __| '_ \   | || '_ \/ __| __/ _' | | |"
 echo " / ___ \| | | (__| | | |  | || | | \__ \ || (_| | | |"
 echo "/_/   \_\_|  \___|_| |_| |___|_| |_|___/\__\__,_|_|_|"
 echo ""
-echo "by Robin Alexander Studt (2024)"
+echo "by Robin Alexander Studt (2023)"
 echo "-----------------------------------------------------"
 echo ""
-echo "Important: You will need to setup a few manual steps, please check out the README file"
-echo "this script is still worked on, use it on your own risk."
+echo "Important: Please make sure that you have followed the "
+echo "manual steps in the README to partition the harddisc!"
+echo ""
 
 # Enter partition names
 lsblk
-read -p "Enter the name of your EFI partition: " nvme0n1p1
-read -p "Enter the name of the ROOT partition: " nvme0n1p2
-#read -p "Enter the name of the _ partition(keep it commented if not needed!): " nvme0n1p3
+read -p "Enter the name of the EFI partition (eg. nvme0n1p1): " nvme0n1p1
+read -p "Enter the name of the ROOT partition (eg. nvme0n1p2): " nvme0n1p2
+# read -p "Enter the name of the VM partition (keep it empty if not required): " nvme0n1p3
 
-# Sync local time
+# Sync time
 timedatectl set-ntp true
 
-# Format partitions, nvme0n1p3 only needed if you use line 19
+# Format partitions
 mkfs.fat -F 32 /dev/$nvme0n1p1;
-mkfs.btrfs -f /dev/$nvme0n1p2;
-#mkfs.btrfs -f /dev/$nvme0n1p3
+mkfs.btrfs -f /dev/$nvme0n1p2
+# mkfs.btrfs -f /dev/$sda3
 
 # Mount points for btrfs
 mount /dev/$nvme0n1p2 /mnt
@@ -42,10 +43,12 @@ mount -o compress=zstd:1,noatime,subvol=@home /dev/$nvme0n1p2 /mnt/home
 mount -o compress=zstd:1,noatime,subvol=@log /dev/$nvme0n1p2 /mnt/var/log
 mount -o compress=zstd:1,noatime,subvol=@snapshots /dev/$nvme0n1p2 /mnt/.snapshots
 mount /dev/$nvme0n1p1 /mnt/boot/efi
-#mkdir /mnt/'optional_partition' <-- Options for third partition, change name and uncomment if needed.
-#mount /dev/$nvme0n1p3 /mount/'optional_partition' <-- same goes for this line if needed, adapt it.
-# Install base packages, change ucode for your CPU..
+# mkdir /mnt/vm
+# mount /dev/$sda3 /mnt/vm
+
+# Install base packages
 pacstrap -K /mnt base base-devel git linux linux-firmware vim openssh reflector rsync amd-ucode
+
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 cat /mnt/etc/fstab
