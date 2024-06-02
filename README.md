@@ -1,6 +1,7 @@
 # WHAT'S INCLUDED?
   Minimal Arch install, with usefull packages, feel free to change the package list to your needs.
-  
+
+# IMPORTANT THIS SCRIPT SUPPORTS 2-3 PARTITIONS. BUT ITS EASY TO MODIFY TO YOUR NEEDS.  
 # !!! PLEASE MAKE SURE TO PREPARE THE SYSTEM BEFORE STARTING THE SCRIPTS !!!
 
 1 - Load your desired keyboard layout = loadkeys de-latin1
@@ -8,8 +9,6 @@
 2 - If your not using LAN, connect to your wifi = iwctl --passphrase [password of network] station wlan0 connect [name of network]
 
 3 - Check for a sucessfull internet connection = ping -c4 'adress of target'
-
-# IMPORTANT THIS SCRIPT SUPPORTS 2-3 PARTITIONS. BUT ITS EASY TO MODIFY TO YOUR NEEDS.
 
 4 - Create partitions ("nvme0n1": this part can be different for your system, you might need to change it, to the right storage device.)
     gdisk /dev/nvme0n1
